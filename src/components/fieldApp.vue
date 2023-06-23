@@ -1,6 +1,6 @@
 <template>
   <div class="field__wrapper">
-    <input type="text" class="field" :placeholder="placeholder" />
+    <input type="text" class="field" :placeholder="placeholder" :value="Object.values(coordinates).join(', ')" />
   </div>
 </template>
 
@@ -11,6 +11,9 @@ export default defineComponent({
   name: 'field-app',
   props: {
     placeholder: String,
+    coordinates: {
+      type: Object,
+    },
   },
 });
 </script>

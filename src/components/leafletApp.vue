@@ -35,7 +35,7 @@ export default defineComponent({
       marker.on('dragend', function (event) {
         var marker = event.target;
         var position = marker.getLatLng();
-        console.log('Marker pos: ', position);
+        mapStore.setMarkerCoofdinates(position);
       });
     };
 
