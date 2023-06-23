@@ -29,10 +29,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import buttonApp from './components/buttonApp.vue';
 import formApp from './components/formApp.vue';
 import mapApp from './components/mapApp.vue';
+import { useMapStore } from './store/mapStore';
 
 export default defineComponent({
   name: 'App',
@@ -42,9 +43,11 @@ export default defineComponent({
     mapApp,
   },
   setup() {
+    const mapStore = useMapStore();
     const title = 'Навигатор';
+
     const addMarker = (): void => {
-      console.log('Добавить маркер');
+      mapStore.setNewMarkerValue(true);
     };
 
     return {
