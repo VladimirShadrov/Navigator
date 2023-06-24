@@ -1,25 +1,21 @@
 # navigator
 
-## Project setup
+Ссылка на [демо](https://my-navigator.netlify.app/)
+
+## Установка зависимостей
 
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Сборка проекта в режиме разработки
 
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Сборка для production
 
 ```
 npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
 ```
