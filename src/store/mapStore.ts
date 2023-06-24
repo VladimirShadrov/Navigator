@@ -12,11 +12,11 @@ export const useMapStore = defineStore('mapStore', {
     setNewMarkerValue(value: boolean): void {
       this.isNewMarker = value;
     },
-    setNewMarker(marker: Marker): void {
-      this.newMarker = marker;
+    setNewMarker(marker?: Marker): void {
+      this.newMarker = marker ? marker : ({} as Marker);
     },
     setMarkerCoofdinates(value: Coordinates) {
-      this.newMarkerCoordinates = Object.values(value).map((num) => num.toFixed(6));
+      this.newMarkerCoordinates = Object.values(value).length ? Object.values(value).map((num) => num.toFixed(6)) : ([] as LatLng[]);
     },
 
     //-----------------------------------------------
@@ -38,7 +38,7 @@ export const useMapStore = defineStore('mapStore', {
   },
 });
 
-interface Coordinates {
+export interface Coordinates {
   Lat: number;
   Lng: number;
 }

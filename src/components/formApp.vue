@@ -10,6 +10,7 @@ import { defineComponent, computed } from 'vue';
 import buttonApp from './buttonApp.vue';
 import fieldApp from './fieldApp.vue';
 import { useMapStore } from '../store/mapStore';
+import { Coordinates } from '../store/mapStore';
 
 export default defineComponent({
   name: 'form-app',
@@ -20,10 +21,11 @@ export default defineComponent({
   setup() {
     const mapStore = useMapStore();
 
-    const coordinates = computed(() => (mapStore.newMarkerCoordinates.length ? mapStore.newMarkerCoordinates : ''));
+    const coordinates = computed(() => (mapStore.newMarkerCoordinates.length ? mapStore.newMarkerCoordinates.join(', ') : ''));
 
     const savePoint = (): void => {
-      console.log('Сохранить точку');
+      mapStore.setNewMarker();
+      mapStore.setMarkerCoofdinates({} as Coordinates);
     };
 
     return {

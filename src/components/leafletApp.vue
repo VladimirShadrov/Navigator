@@ -38,7 +38,7 @@ export default defineComponent({
       mapStore.setNewMarker(marker);
       marker.on('dragend', function (event) {
         const marker = event.target;
-        if (marker.options.title === mapStore.newMarker.options.title) {
+        if (Object.values(mapStore.newMarker).length && marker.options.title === mapStore.newMarker.options.title) {
           mapStore.setMarkerCoofdinates(marker.getLatLng());
         }
         mapStore.updateMarker(marker);

@@ -1,6 +1,6 @@
 <template>
   <div class="field__wrapper">
-    <input type="text" class="field" :placeholder="placeholder" :value="Object.values(coordinates).join(', ')" />
+    <input type="text" class="field" :placeholder="placeholder" :value="coordinates" />
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default defineComponent({
   props: {
     placeholder: String,
     coordinates: {
-      type: Object,
+      type: String,
     },
   },
 });
