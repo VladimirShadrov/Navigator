@@ -67,9 +67,11 @@ export default defineComponent({
 
       const result: Result = {};
       mapStore.markersCollection.forEach((marker, index) => {
-        const fieldName = `Маркер ${index + 1}`;
+        const fieldName = `Marker_${index + 1}`;
         result[fieldName] = marker.getLatLng();
       });
+
+      console.log('Result: ', result);
     };
 
     return {

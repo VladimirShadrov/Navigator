@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia';
 import { Marker, LatLng } from 'leaflet';
 
+export interface Coordinates {
+  Lat: number;
+  Lng: number;
+}
+
 export const useMapStore = defineStore('mapStore', {
   state: () => ({
     isNewMarker: false,
@@ -32,8 +37,3 @@ export const useMapStore = defineStore('mapStore', {
     },
   },
 });
-
-export interface Coordinates {
-  Lat: number;
-  Lng: number;
-}
