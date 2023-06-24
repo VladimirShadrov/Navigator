@@ -18,6 +18,9 @@
             <div class="form__container">
               <form-app />
             </div>
+            <div class="buttons">
+              <button-app :title="'Вывести координаты маркеров в консоль'" :bg="'#eb4b4b'" :action="showResult" :alignment="'start'" />
+            </div>
           </div>
         </div>
       </div>
@@ -29,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent } from 'vue';
 import buttonApp from './components/buttonApp.vue';
 import formApp from './components/formApp.vue';
 import mapApp from './components/mapApp.vue';
@@ -50,9 +53,29 @@ export default defineComponent({
       mapStore.setNewMarkerValue(true);
     };
 
+    const showResult = (): void => {
+      if (!mapStore.markersCollection.length) return;
+
+      interface MarkerCoordinates {
+        lat: number;
+        lng: number;
+      }
+
+      interface Result {
+        [key: string]: MarkerCoordinates;
+      }
+
+      const result: Result = {};
+      mapStore.markersCollection.forEach((marker, index) => {
+        const fieldName = `Маркер ${index + 1}`;
+        result[fieldName] = marker.getLatLng();
+      });
+    };
+
     return {
       title,
       addMarker,
+      showResult,
     };
   },
 });

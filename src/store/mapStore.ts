@@ -19,22 +19,17 @@ export const useMapStore = defineStore('mapStore', {
       this.newMarkerCoordinates = Object.values(value).length ? Object.values(value).map((num) => num.toFixed(6)) : ([] as LatLng[]);
     },
 
-    //-----------------------------------------------
     updateMarker(marker: L.Marker) {
-      //const coords = marker.getLatLng(); ПОЛУЧИТЬ КООРДИНАТЫ МАРКЕРА
       const index = this.markersCollection.findIndex((m) => m.options.title === marker.options.title);
       if (index !== -1) {
         this.markersCollection.splice(index, 1, marker);
       } else {
         this.addMarker(marker);
       }
-
-      console.log('All markers: ', this.markersCollection);
     },
     addMarker(marker: L.Marker) {
       this.markersCollection.push(marker);
     },
-    //------------------------------------------------
   },
 });
 
