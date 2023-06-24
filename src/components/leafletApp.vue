@@ -36,12 +36,32 @@ export default defineComponent({
       mapStore.updateMarker(marker);
       markerId.value = markerId.value + 1;
       mapStore.setNewMarker(marker);
+
+      // Слой линий
+      const linesLayer = L.layerGroup().addTo(map);
+
+      // Добавляем обработку окончания перемещения маркера
       marker.on('dragend', function (event) {
         const marker = event.target;
         if (Object.values(mapStore.newMarker).length && marker.options.title === mapStore.newMarker.options.title) {
           mapStore.setMarkerCoofdinates(marker.getLatLng());
         }
         mapStore.updateMarker(marker);
+
+        // Удаляем старые линии после перемещения маркеров
+        map.eachLayer(function (layer: any) {
+          if (layer instanceof L.Polyline) {
+            map.removeLayer(layer);
+          }
+        });
+
+        // Добавляем новые линии на карту
+        mapStore.markersCollection.forEach((marker, index, array) => {
+          const nextIndex: any = array[index + 1] ? index + 1 : 0;
+
+          const line = L.polyline([marker.getLatLng(), array[nextIndex].getLatLng()], { color: 'blue' });
+          linesLayer.addLayer(line);
+        });
       });
     };
 
