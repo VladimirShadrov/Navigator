@@ -20,7 +20,7 @@ export default defineComponent({
   setup() {
     const mapStore = useMapStore();
 
-    const coordinates = computed(() => mapStore.currentMarkerCoordinates);
+    const coordinates = computed(() => (mapStore.newMarkerCoordinates.length ? mapStore.newMarkerCoordinates : ''));
 
     const savePoint = (): void => {
       console.log('Сохранить точку');

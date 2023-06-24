@@ -13,6 +13,7 @@ export default defineComponent({
   setup() {
     const mapStore = useMapStore();
     const isNewMarker = computed(() => mapStore.isNewMarker);
+    const markerId = ref(1);
     let map: any;
 
     // создание карты и добавление ее на страницу
@@ -31,11 +32,16 @@ export default defineComponent({
         iconUrl: markerIconUrl,
       });
 
-      const marker = L.marker(map.getCenter(), { icon: myIcon, draggable: true }).addTo(map);
+      const marker = L.marker(map.getCenter(), { icon: myIcon, draggable: true, title: `${markerId.value}` }).addTo(map);
+      mapStore.updateMarker(marker);
+      markerId.value = markerId.value + 1;
+      mapStore.setNewMarker(marker);
       marker.on('dragend', function (event) {
-        var marker = event.target;
-        var position = marker.getLatLng();
-        mapStore.setMarkerCoofdinates(position);
+        const marker = event.target;
+        if (marker.options.title === mapStore.newMarker.options.title) {
+          mapStore.setMarkerCoofdinates(marker.getLatLng());
+        }
+        mapStore.updateMarker(marker);
       });
     };
 
