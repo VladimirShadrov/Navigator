@@ -86,7 +86,9 @@ export default defineComponent({
 #leaflet {
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .leaflet-bottom.leaflet-right {
   display: none;

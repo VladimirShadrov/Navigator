@@ -18,8 +18,8 @@ export default defineComponent({
 
 <style scoped>
 .map {
-  height: 800px;
+  position: relative;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
 }
 </style>

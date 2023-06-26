@@ -8,7 +8,7 @@
     <div class="content">
       <div class="container">
         <div class="content__wrapper">
-          <div class="map">
+          <div class="map__wrapper">
             <map-app />
           </div>
           <div class="form__wrapper">
@@ -96,33 +96,59 @@ export default defineComponent({
   min-height: 100vh;
 }
 .container {
+  width: 100%;
   max-width: 1500px;
   margin: 0 auto;
+  padding: 0 8px;
+  display: flex;
+  justify-content: center;
 }
 .header {
-  padding: 16px 0;
+  padding: 8px 0;
   background: rgb(7, 135, 240);
   color: white;
 }
 .header__title {
   text-align: center;
 }
+.content {
+  flex-grow: 1;
+  display: flex;
+  padding: 8px 0;
+}
 .content__wrapper {
   display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.map {
-  width: 80%;
-  padding-right: 16px;
+.map__wrapper {
+  order: 1;
+  flex-grow: 1;
 }
 .form__wrapper {
-  width: 20%;
-  padding-left: 16px;
+  order: 0;
 }
 .buttons {
-  padding: 8px;
+  padding: 8px 0;
 }
 .footer {
   background: #080808;
   padding: 16px 0;
+}
+
+@media (min-width: 768px) {
+  .content__wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .map__wrapper {
+    order: 0;
+    width: 69%;
+    flex-grow: 0;
+  }
+  .form__wrapper {
+    order: 1;
+    width: 30%;
+  }
 }
 </style>
